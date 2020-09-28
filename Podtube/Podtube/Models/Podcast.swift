@@ -10,4 +10,6 @@ import Foundation
 struct Podcast {
     let name: String
     let artistName: String
+    
+    
 }

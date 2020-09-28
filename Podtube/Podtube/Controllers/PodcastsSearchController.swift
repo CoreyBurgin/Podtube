@@ -11,27 +11,23 @@ import UIKit
 class PodcastsSearchController: UITableViewController, UISearchBarDelegate {
     
     let podcasts = [
-         Podcast(name: "JBP", artistName: "Joe budden"),
-        Podcast(name: "Billant idiots", artistName: "CTHG")
+        Podcast(name: "JBP", artistName: "Joe Budden"),
+        Podcast(name: "JRE", artistName: "Joe Rogan"),
     ]
-    
-    
     
     let cellId = "cellId"
     
+    // lets implement a UISearchController
     let searchController = UISearchController(searchResultsController: nil)
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         setupSearchBar()
         setupTableView()
-        
-        
     }
+    
+    //MARK:- Setup Work
     
     fileprivate func setupSearchBar() {
         navigationItem.searchController = searchController
@@ -39,9 +35,6 @@ class PodcastsSearchController: UITableViewController, UISearchBarDelegate {
         searchController.dimsBackgroundDuringPresentation = false
         searchController.searchBar.delegate = self
     }
-    
-    
-    
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         print(searchText)
@@ -52,9 +45,9 @@ class PodcastsSearchController: UITableViewController, UISearchBarDelegate {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
     }
     
-    
     //MARK:- UITableView
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return podcasts.count
     }
     
@@ -64,10 +57,9 @@ class PodcastsSearchController: UITableViewController, UISearchBarDelegate {
         let podcast = self.podcasts[indexPath.row]
         cell.textLabel?.text = "\(podcast.name)\n\(podcast.artistName)"
         cell.textLabel?.numberOfLines = -1
-        cell.imageView?.image = #imageLiteral(resourceName: "play_circle_filled")
+        cell.imageView?.image = #imageLiteral(resourceName: "folder")
         
         return cell
     }
-    
     
 }
