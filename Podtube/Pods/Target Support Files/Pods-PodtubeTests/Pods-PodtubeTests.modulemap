@@ -1,0 +1,6 @@
+framework module Pods_PodtubeTests {
+  umbrella header "Pods-PodtubeTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
