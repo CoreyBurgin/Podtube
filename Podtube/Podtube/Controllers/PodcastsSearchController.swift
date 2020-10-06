@@ -11,9 +11,9 @@ import Alamofire
 
 class PodcastsSearchController: UITableViewController, UISearchBarDelegate {
     
-    let podcasts = [
-        Podcast(name: "JBP", artistName: "Joe Budden"),
-        Podcast(name: "JRE", artistName: "Joe Rogan"),
+    var podcasts = [
+        Podcast(trackName: "Lets Build That App", artistName: "Brian Voong"),
+        Podcast(trackName: "Some Podcast", artistName: "Some Author"),
     ]
     
     let cellId = "cellId"
@@ -38,24 +38,36 @@ class PodcastsSearchController: UITableViewController, UISearchBarDelegate {
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        print(searchText)
+//        print(searchText)
+        // later implement Alamofire to search iTunes API
         
-        //Using string interpolation to search the itunes APiI with with text entered inside search field
-        let url = "https://itunes.apple.com/search?term=\(searchText)"
+//        let url = "https://itunes.apple.com/search?term=\(searchText)"
         
-        Alamofire.request(url).responseData { (dataResponse) in
+        let url = "https://itunes.apple.com/search"
+        let parameters = ["term": searchText, "media": "podcast"]
+        
+        Alamofire.request(url, method: .get, parameters: parameters, encoding: URLEncoding.default, headers: nil).responseData { (dataResponse) in
+            
             if let err = dataResponse.error {
                 print("Failed to contact yahoo", err)
                 return
             }
             
             guard let data = dataResponse.data else { return }
-            let dummyString = String(data: data, encoding: .utf8)
-            print(dummyString ?? "")
-            
+            do {
+                let searchResult = try JSONDecoder().decode(SearchResults.self, from: data)
+                self.podcasts = searchResult.results
+                self.tableView.reloadData()
+            } catch let decodeErr {
+                print("Failed to decode:", decodeErr)
+            }
             
         }
-        // later implement Alamofire to search iTunes API
+    }
+    
+    struct SearchResults: Decodable {
+        let resultCount: Int
+        let results: [Podcast]
     }
     
     fileprivate func setupTableView() {
@@ -72,10 +84,24 @@ class PodcastsSearchController: UITableViewController, UISearchBarDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
         
         let podcast = self.podcasts[indexPath.row]
-        cell.textLabel?.text = "\(podcast.name)\n\(podcast.artistName)"
+        cell.textLabel?.text = "\(podcast.trackName ?? "")\n\(podcast.artistName ?? "")"
         cell.textLabel?.numberOfLines = -1
         cell.imageView?.image = #imageLiteral(resourceName: "appicon")
         
         return cell
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
