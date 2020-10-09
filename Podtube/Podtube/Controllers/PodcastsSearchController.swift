@@ -28,6 +28,7 @@ class PodcastsSearchController: UITableViewController, UISearchBarDelegate {
     //MARK:- Setup Work
     
     fileprivate func setupSearchBar() {
+        self.definesPresentationContext = true
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
         searchController.dimsBackgroundDuringPresentation = false
@@ -49,7 +50,17 @@ class PodcastsSearchController: UITableViewController, UISearchBarDelegate {
         tableView.register(nib, forCellReuseIdentifier: cellId)
     }
     
+    
+    
     //MARK:- UITableView
+    
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let episodeController = EpisodesController()
+        let podcast = self.podcasts[indexPath.row]
+        episodeController.podcast = podcast
+        navigationController?.pushViewController(episodeController, animated: true)
+    }
     
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -61,7 +72,9 @@ class PodcastsSearchController: UITableViewController, UISearchBarDelegate {
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 250
+        //termary operator
+        //if podcast search count is higher than 0 then header size will be 0 other wise its 250
+        return  self.podcasts.count > 0 ? 0 : 250
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
