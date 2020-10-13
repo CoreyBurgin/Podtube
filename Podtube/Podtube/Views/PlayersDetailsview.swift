@@ -41,15 +41,48 @@ class PlayersDetailsView: UIView {
         return avPlayer
     }()
     
+    
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        let time = CMTimeMake(value: 1, timescale: 3)
+        let times = [NSValue(time: time)]
+        player.addBoundaryTimeObserver(forTimes: times, queue: .main) {
+            print("Episode started playing")
+            self.enlargeEpisodeImageView()
+        }
+    }
+    
     //MARK:- IB Actions and Outlets
     
     @IBAction func handleDismiss(_ sender: Any) {
-        self.removeFromSuperview()
+       self.removeFromSuperview()
     }
     
-    @IBOutlet weak var episodeImageView: UIImageView!
-
-
+    fileprivate func enlargeEpisodeImageView() {
+        UIView.animate(withDuration: 0.75, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+            self.episodeImageView.transform = .identity
+        })
+    }
+    
+    fileprivate let shrunkenTransform = CGAffineTransform(scaleX: 0.7, y: 0.7)
+    
+    fileprivate func shrinkEpisodeImageView() {
+        UIView.animate(withDuration: 0.75, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+            self.episodeImageView.transform = self.shrunkenTransform
+        })
+    }
+    
+    @IBOutlet weak var episodeImageView: UIImageView! {
+        didSet {
+            episodeImageView.layer.cornerRadius = 5
+            episodeImageView.clipsToBounds = true
+            let scale: CGFloat = 0.7
+            episodeImageView.transform = CGAffineTransform(scaleX: scale, y: scale)
+        }
+    }
+    
     @IBOutlet weak var episodeTitleLabel: UILabel! {
         didSet{
             episodeTitleLabel.numberOfLines = 2
@@ -76,9 +109,11 @@ class PlayersDetailsView: UIView {
         if player.timeControlStatus == .paused {
             player.play()
             playPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
+            enlargeEpisodeImageView()
         } else {
             player.pause()
-            playPauseButton.setImage(#imageLiteral(resourceName: "Play Button"), for: .normal)
+            playPauseButton.setImage(#imageLiteral(resourceName: "Play Button").withRenderingMode(.alwaysOriginal), for: .normal)
+            shrinkEpisodeImageView()
         }
     
         

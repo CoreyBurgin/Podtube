@@ -23,6 +23,10 @@ class PodcastsSearchController: UITableViewController, UISearchBarDelegate {
         tableView.backgroundColor = #colorLiteral(red: 0.9283757806, green: 0.9285091758, blue: 0.9283465743, alpha: 1)
         setupSearchBar()
         setupTableView()
+        
+        //searching for a podcast upon launch time.
+        
+        searchBar(searchController.searchBar, textDidChange: "Code Coffee Culture")
     }
     
     //MARK:- Setup Work
