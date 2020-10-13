@@ -8,6 +8,7 @@ target 'Podtube' do
   # Pods for Podtube
     pod 'Alamofire', '~> 4.5'
     pod 'SDWebImage', '~> 4.0'
+    pod 'FeedKit', '7.0.1'
   target 'PodtubeTests' do
     inherit! :search_paths
     # Pods for testing

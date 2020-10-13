@@ -20,7 +20,7 @@ class PodcastsSearchController: UITableViewController, UISearchBarDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        tableView.backgroundColor = #colorLiteral(red: 0.9283757806, green: 0.9285091758, blue: 0.9283465743, alpha: 1)
         setupSearchBar()
         setupTableView()
     }
@@ -48,6 +48,7 @@ class PodcastsSearchController: UITableViewController, UISearchBarDelegate {
         tableView.tableFooterView = UIView()
         let nib = UINib(nibName: "PodcastCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: cellId)
+        hidesBottomBarWhenPushed = true
     }
     
     
@@ -60,6 +61,7 @@ class PodcastsSearchController: UITableViewController, UISearchBarDelegate {
         let podcast = self.podcasts[indexPath.row]
         episodeController.podcast = podcast
         navigationController?.pushViewController(episodeController, animated: true)
+        hidesBottomBarWhenPushed = true
     }
     
     
@@ -68,6 +70,7 @@ class PodcastsSearchController: UITableViewController, UISearchBarDelegate {
         label.text = "Search for a Podcast"
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
+        label.textColor = #colorLiteral(red: 0.9604431987, green: 0.1978522241, blue: 0.3645554781, alpha: 1)
         return label
     }
     
