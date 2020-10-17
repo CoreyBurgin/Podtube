@@ -35,25 +35,29 @@
                                 <constraint firstAttribute="width" secondItem="pZ5-N8-xdO" secondAttribute="height" id="ER1-i7-Dbr"/>
                             </constraints>
                         </imageView>
-                        <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="ERI-ou-br5">
+                        <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="ERI-ou-br5">
                             <rect key="frame" x="-2" y="421" width="370" height="37"/>
                             <color key="tintColor" red="0.1550922096" green="0.25956150890000002" blue="0.30168047549999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="36" id="1tK-wl-BcJ"/>
                             </constraints>
                             <color key="thumbTintColor" red="0.33013173940000001" green="0.40771245960000002" blue="0.43814280630000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="currentTimeSlider:" destination="1r9-xs-idR" eventType="valueChanged" id="txa-C6-WdO"/>
+                                <action selector="handleCurrentTimeSliderChange:" destination="1r9-xs-idR" eventType="valueChanged" id="zzh-zx-SFj"/>
+                            </connections>
                         </slider>
                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HFk-NY-xbZ">
                             <rect key="frame" x="0.0" y="457" width="366" height="22"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="00:00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2ea-ez-F0M">
-                                    <rect key="frame" x="0.0" y="0.0" width="294.66666666666669" height="22"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="00:00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2ea-ez-F0M">
+                                    <rect key="frame" x="0.0" y="0.0" width="338" height="22"/>
                                     <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="17"/>
                                     <color key="textColor" red="0.2281503677" green="0.28974008559999997" blue="0.31372982259999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="88:88:88" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Txe-jS-hWI">
-                                    <rect key="frame" x="294.66666666666669" y="0.0" width="71.333333333333314" height="22"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="--:--" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Txe-jS-hWI">
+                                    <rect key="frame" x="338" y="0.0" width="28" height="22"/>
                                     <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="17"/>
                                     <color key="textColor" red="0.2281503677" green="0.28974008559999997" blue="0.31372982259999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     <nil key="highlightedColor"/>
@@ -94,6 +98,9 @@
                                         <constraint firstAttribute="width" constant="65" id="t6V-5M-DeW"/>
                                     </constraints>
                                     <state key="normal" image="before"/>
+                                    <connections>
+                                        <action selector="handleRewind:" destination="1r9-xs-idR" eventType="touchUpInside" id="9LC-Gu-FQL"/>
+                                    </connections>
                                 </button>
                                 <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Yyf-9q-BBY">
                                     <rect key="frame" x="110.33333333333333" y="0.0" width="35.333333333333329" height="241"/>
@@ -116,6 +123,9 @@
                                         <constraint firstAttribute="width" constant="65" id="6da-aN-txM"/>
                                     </constraints>
                                     <state key="normal" image="next"/>
+                                    <connections>
+                                        <action selector="handleFastForward:" destination="1r9-xs-idR" eventType="touchUpInside" id="bYO-MD-kZy"/>
+                                    </connections>
                                 </button>
                                 <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="G5t-Rj-aMi">
                                     <rect key="frame" x="330.66666666666669" y="0.0" width="35.333333333333314" height="241"/>
@@ -138,6 +148,9 @@
                                     <color key="minimumTrackTintColor" red="0.2281503677" green="0.28974008559999997" blue="0.31372982259999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     <color key="maximumTrackTintColor" red="0.67064940930000005" green="0.67043727639999995" blue="0.67843329910000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     <color key="thumbTintColor" red="0.2281503677" green="0.28974008559999997" blue="0.31372982259999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    <connections>
+                                        <action selector="handleVolumeChange:" destination="1r9-xs-idR" eventType="valueChanged" id="IRh-j9-heT"/>
+                                    </connections>
                                 </slider>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="volume copy" translatesAutoresizingMaskIntoConstraints="NO" id="rw8-we-XU3">
                                     <rect key="frame" x="331" y="0.0" width="35" height="34"/>
@@ -163,6 +176,9 @@
             </constraints>
             <connections>
                 <outlet property="authorLabel" destination="ItG-eY-K6c" id="3c0-GN-DH7"/>
+                <outlet property="currentTimeLabel" destination="2ea-ez-F0M" id="KsC-Ag-Wgm"/>
+                <outlet property="currentTimeSlider" destination="ERI-ou-br5" id="Up8-ua-mjA"/>
+                <outlet property="durationLabel" destination="Txe-jS-hWI" id="yn3-xV-Fv6"/>
                 <outlet property="episodeImageView" destination="pZ5-N8-xdO" id="1fk-6a-oBv"/>
                 <outlet property="episodeTitleLabel" destination="nVt-cJ-uJ2" id="Akb-Qe-gln"/>
                 <outlet property="playPauseButton" destination="rY4-fH-gqi" id="K7p-Vt-ihH"/>
