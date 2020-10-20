@@ -12,6 +12,9 @@ class PlayersDetailsView: UIView {
     
     var episode: Episode! {
         didSet {
+            
+            
+            miniTitleLabel.text = episode.title
             episodeTitleLabel.text = episode.title
             authorLabel.text = episode.author
             
@@ -19,7 +22,7 @@ class PlayersDetailsView: UIView {
         
             guard let url = URL(string: episode.imageUrl ?? "") else { return }
             episodeImageView.sd_setImage(with: url)
-            
+            miniEpisodeImageView.sd_setImage(with: url)
             
         }
     }
@@ -69,6 +72,9 @@ class PlayersDetailsView: UIView {
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTapMaximize)))
+        
+        
         observePlayerCurrentTime()
         
         let time = CMTimeMake(value: 1, timescale: 3)
@@ -82,6 +88,18 @@ class PlayersDetailsView: UIView {
         }
     }
     
+    @objc func handleTapMaximize() {
+        let mainTabBarController = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController
+        mainTabBarController?.maximizePlayerDetails(episode: nil)    }
+    
+    
+    
+    
+    
+    static func initFromNib() -> PlayersDetailsView {
+       return Bundle.main.loadNibNamed("PlayersDetailsView", owner: self, options: nil)?.first as! PlayersDetailsView
+    }
+    
     
     deinit {
         print("PlayerDetailsView memory being reclaimed...")
@@ -89,6 +107,37 @@ class PlayersDetailsView: UIView {
     
     //MARK:- IB Actions and Outlets
   
+ 
+    @IBOutlet weak var miniEpisodeImageView: UIImageView!
+    
+    @IBOutlet weak var miniTitleLabel: UILabel!
+    
+   
+    
+    @IBOutlet weak var miniPlayPauseButton: UIButton! {
+        didSet {
+            miniPlayPauseButton.addTarget(self, action: #selector(handlePlayPause), for: .touchUpInside)
+            miniPlayPauseButton.imageEdgeInsets = .init(top: 8, left: 8, bottom: 8, right: 8)
+        }
+    }
+    
+    
+   
+    @IBOutlet weak var miniFastForwardButton: UIButton! {
+        didSet {
+            miniFastForwardButton.imageEdgeInsets = .init(top: 8, left: 8, bottom: 8, right: 8)
+            miniFastForwardButton.addTarget(self, action: #selector(handleFastForward(_:)), for: .touchUpInside)
+        }
+        
+    }
+    
+    
+    @IBOutlet weak var maximizedStackView: UIStackView!
+    
+    @IBOutlet weak var miniPlayerView: UIView!
+    
+    
+    
     @IBAction func handleCurrentTimeSliderChange(_ sender: Any) {
         let percentage = currentTimeSlider.value
         guard let duration = player.currentItem?.duration else { return }
@@ -122,8 +171,11 @@ class PlayersDetailsView: UIView {
     @IBOutlet weak var currentTimeLabel: UILabel!
     @IBOutlet weak var durationLabel: UILabel!
     @IBOutlet weak var currentTimeSlider: UISlider!
+    
     @IBAction func handleDismiss(_ sender: Any) {
-       self.removeFromSuperview()
+//       self.removeFromSuperview()
+        let maintabBarController = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController
+        maintabBarController?.minimizePlayerDetails()
     }
     
     fileprivate func enlargeEpisodeImageView() {
@@ -154,14 +206,8 @@ class PlayersDetailsView: UIView {
             episodeTitleLabel.numberOfLines = 2
         }
     }
-    
-
 
     @IBOutlet weak var authorLabel: UILabel!
-    
-
-
- 
     
     @IBOutlet weak var playPauseButton: UIButton! {
         didSet {
@@ -175,10 +221,12 @@ class PlayersDetailsView: UIView {
         if player.timeControlStatus == .paused {
             player.play()
             playPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
+            miniPlayPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
             enlargeEpisodeImageView()
         } else {
             player.pause()
-            playPauseButton.setImage(#imageLiteral(resourceName: "Play Button").withRenderingMode(.alwaysOriginal), for: .normal)
+            playPauseButton.setImage(#imageLiteral(resourceName: "Play Button"), for: .normal)
+            miniPlayPauseButton.setImage(#imageLiteral(resourceName: "Play Button"), for: .normal)
             shrinkEpisodeImageView()
         }
     

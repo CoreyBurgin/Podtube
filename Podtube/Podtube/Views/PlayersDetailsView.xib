@@ -3,6 +3,7 @@
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -14,6 +15,58 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MPE-36-kg4">
+                    <rect key="frame" x="0.0" y="44" width="414" height="64"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="rws-iE-pZ0">
+                            <rect key="frame" x="8" y="8" width="398" height="48"/>
+                            <subviews>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="appicon" translatesAutoresizingMaskIntoConstraints="NO" id="ar0-qd-K5J">
+                                    <rect key="frame" x="0.0" y="0.0" width="48" height="48"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="48" id="7Gz-yR-bQw"/>
+                                    </constraints>
+                                </imageView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Episode Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cIR-7A-FWl">
+                                    <rect key="frame" x="58" y="0.0" width="224" height="48"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8LE-XC-BQj">
+                                    <rect key="frame" x="292" y="0.0" width="48" height="48"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="48" id="CWP-72-44s"/>
+                                    </constraints>
+                                    <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <state key="normal">
+                                        <imageReference key="image" image="pause.circle" catalog="system" symbolScale="large"/>
+                                    </state>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6mC-aH-AN9">
+                                    <rect key="frame" x="350" y="0.0" width="48" height="48"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="48" id="lKo-X9-dCZ"/>
+                                    </constraints>
+                                    <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <state key="normal" image="forward.fill" catalog="system"/>
+                                    <connections>
+                                        <action selector="miniFastForwardButton:" destination="1r9-xs-idR" eventType="touchUpInside" id="5F2-rq-PVA"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                    <color key="backgroundColor" red="0.92942428590000004" green="0.92938935759999997" blue="0.92941302059999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <color key="tintColor" red="0.72337728739999996" green="0.1509007514" blue="0.086205668750000006" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="64" id="Pi8-rR-UCC"/>
+                        <constraint firstAttribute="trailing" secondItem="rws-iE-pZ0" secondAttribute="trailing" constant="8" id="cWx-3f-hcd"/>
+                        <constraint firstItem="rws-iE-pZ0" firstAttribute="leading" secondItem="MPE-36-kg4" secondAttribute="leading" constant="8" id="eTo-8j-y3t"/>
+                        <constraint firstAttribute="bottom" secondItem="rws-iE-pZ0" secondAttribute="bottom" constant="8" id="fjl-wk-96e"/>
+                        <constraint firstItem="rws-iE-pZ0" firstAttribute="top" secondItem="MPE-36-kg4" secondAttribute="top" constant="8" id="xqw-Bk-qCX"/>
+                    </constraints>
+                </view>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="cst-xk-HPN">
                     <rect key="frame" x="24" y="44" width="366" height="794"/>
                     <subviews>
@@ -172,6 +225,9 @@
                 <constraint firstItem="cst-xk-HPN" firstAttribute="leading" secondItem="sU1-Fd-rxn" secondAttribute="leading" constant="24" id="RCf-V2-AL9"/>
                 <constraint firstItem="sU1-Fd-rxn" firstAttribute="trailing" secondItem="cst-xk-HPN" secondAttribute="trailing" constant="24" id="aob-q1-oow"/>
                 <constraint firstItem="sU1-Fd-rxn" firstAttribute="bottom" secondItem="cst-xk-HPN" secondAttribute="bottom" constant="24" id="j6x-tw-LoG"/>
+                <constraint firstItem="sU1-Fd-rxn" firstAttribute="trailing" secondItem="MPE-36-kg4" secondAttribute="trailing" id="jPd-Fy-yWw"/>
+                <constraint firstItem="MPE-36-kg4" firstAttribute="top" secondItem="sU1-Fd-rxn" secondAttribute="top" id="kR9-lb-uE4"/>
+                <constraint firstItem="MPE-36-kg4" firstAttribute="leading" secondItem="sU1-Fd-rxn" secondAttribute="leading" id="kfi-TC-gbf"/>
                 <constraint firstItem="cst-xk-HPN" firstAttribute="top" secondItem="sU1-Fd-rxn" secondAttribute="top" id="vhv-PU-HSL"/>
             </constraints>
             <connections>
@@ -181,6 +237,12 @@
                 <outlet property="durationLabel" destination="Txe-jS-hWI" id="yn3-xV-Fv6"/>
                 <outlet property="episodeImageView" destination="pZ5-N8-xdO" id="1fk-6a-oBv"/>
                 <outlet property="episodeTitleLabel" destination="nVt-cJ-uJ2" id="Akb-Qe-gln"/>
+                <outlet property="maximizedStackView" destination="cst-xk-HPN" id="Tcg-WO-9VR"/>
+                <outlet property="miniEpisodeImageView" destination="ar0-qd-K5J" id="Jt3-eE-3rc"/>
+                <outlet property="miniFastForwardButton" destination="6mC-aH-AN9" id="MZz-dq-VUk"/>
+                <outlet property="miniPlayPauseButton" destination="8LE-XC-BQj" id="gYK-ou-4Ad"/>
+                <outlet property="miniPlayerView" destination="MPE-36-kg4" id="Pj7-7J-KBm"/>
+                <outlet property="miniTitleLabel" destination="cIR-7A-FWl" id="whX-MC-KZz"/>
                 <outlet property="playPauseButton" destination="rY4-fH-gqi" id="K7p-Vt-ihH"/>
             </connections>
             <point key="canvasLocation" x="160.86956521739131" y="119.86607142857142"/>
@@ -190,8 +252,10 @@
         <image name="appicon" width="60" height="60"/>
         <image name="back" width="49" height="49"/>
         <image name="before" width="64" height="64"/>
+        <image name="forward.fill" catalog="system" width="128" height="79"/>
         <image name="next" width="64" height="64"/>
         <image name="pause" width="65" height="65"/>
+        <image name="pause.circle" catalog="system" width="128" height="121"/>
         <image name="volume" width="9" height="12"/>
         <image name="volume copy" width="14" height="12"/>
         <systemColor name="systemBackgroundColor">
