@@ -47,17 +47,15 @@ class PlayersDetailsView: UIView {
     
     
     fileprivate func observePlayerCurrentTime() {
-         let interval = CMTimeMake(value: 1, timescale: 2)
-        player.addPeriodicTimeObserver(forInterval: interval, queue: .main) { (time) in
+        let interval = CMTimeMake(value: 1, timescale: 2)
+        player.addPeriodicTimeObserver(forInterval: interval, queue: .main) { [weak self] (time) in
+            self?.currentTimeLabel.text = time.toDisplayString()
+            let durationTime = self?.player.currentItem?.duration
+            self?.durationLabel.text = durationTime?.toDisplayString()
             
-            self.currentTimeLabel.text = time.toDisplayString()
-            let durationTime = self.player.currentItem?.duration
-            self.durationLabel.text = durationTime?.toDisplayString()
-            
-            self.updateCurrentTimeSlider()
+            self?.updateCurrentTimeSlider()
         }
     }
-    
     
     fileprivate func updateCurrentTimeSlider() {
         let currentTimeSeconds = CMTimeGetSeconds(player.currentTime())
@@ -68,12 +66,12 @@ class PlayersDetailsView: UIView {
     }
     
     
+    var panGesture: UIPanGestureRecognizer!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTapMaximize)))
-        
+        setupGestures()
         
         observePlayerCurrentTime()
         
@@ -88,23 +86,49 @@ class PlayersDetailsView: UIView {
         }
     }
     
-    @objc func handleTapMaximize() {
-        let mainTabBarController = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController
-        mainTabBarController?.maximizePlayerDetails(episode: nil)    }
     
+    fileprivate func setupGestures() {
+        addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTapMaximize)))
+        panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePan))
+        addGestureRecognizer(panGesture)
+        
+        maximizedStackView.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(handleDismissalPan)))
+        
+        
+    }
+
     
-    
-    
-    
-    static func initFromNib() -> PlayersDetailsView {
-       return Bundle.main.loadNibNamed("PlayersDetailsView", owner: self, options: nil)?.first as! PlayersDetailsView
+    @objc func handleDismissalPan(gesture: UIPanGestureRecognizer) {
+        print("maximizedStackView dismissal")
+        
+        if gesture.state == .changed {
+            let translation = gesture.translation(in: superview)
+            maximizedStackView.transform = CGAffineTransform(translationX: 0, y: translation.y)
+        } else if gesture.state == .ended {
+            let translation = gesture.translation(in: superview)
+            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+                self.maximizedStackView.transform = .identity
+                
+                if translation.y > 50 {
+                    let mainTabBarController = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController
+                    mainTabBarController?.minimizePlayerDetails()
+                }
+                
+            })
+        }
     }
     
+    static func initFromNib() -> PlayersDetailsView {
+        return Bundle.main.loadNibNamed("PlayersDetailsView", owner: self, options: nil)?.first as! PlayersDetailsView
+    }
     
     deinit {
         print("PlayerDetailsView memory being reclaimed...")
     }
     
+    
+    
+  
     //MARK:- IB Actions and Outlets
   
  
@@ -173,9 +197,8 @@ class PlayersDetailsView: UIView {
     @IBOutlet weak var currentTimeSlider: UISlider!
     
     @IBAction func handleDismiss(_ sender: Any) {
-//       self.removeFromSuperview()
-        let maintabBarController = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController
-        maintabBarController?.minimizePlayerDetails()
+        let mainTabBarController =  UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController
+        mainTabBarController?.minimizePlayerDetails()
     }
     
     fileprivate func enlargeEpisodeImageView() {
