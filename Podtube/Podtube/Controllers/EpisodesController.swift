@@ -70,18 +70,7 @@ class EpisodesController: UITableViewController {
         let episode = self.episodes[indexPath.row]
         let mainTabBarController = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController
         mainTabBarController?.maximizePlayerDetails(episode: episode)
-        
-//
-//        print("Trying to play episode:", episode.title)
-//
-//        let window = UIApplication.shared.keyWindow
-//
-//        let playerDetailsView = PlayerDetailsView.initFromNib()
-//
-//        playerDetailsView.episode = episode
-//
-//        playerDetailsView.frame = self.view.frame
-//        window?.addSubview(playerDetailsView)
+    
     }
     
 
@@ -101,15 +90,6 @@ class EpisodesController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 134
     }
-    
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.tabBarController?.tabBar.isHidden = false
-    }
-    
-    
-    
     
     
 }

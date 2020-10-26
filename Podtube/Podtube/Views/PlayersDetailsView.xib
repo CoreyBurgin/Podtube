@@ -20,7 +20,7 @@
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rw8-jY-aOq">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="0.66666666666666663"/>
-                            <color key="backgroundColor" red="0.84314864869999995" green="0.84311681989999998" blue="0.84313839670000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <color key="backgroundColor" red="0.83922702069999999" green="0.83919537070000005" blue="0.8392168283" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="0.5" id="qyH-CG-UVj"/>
                             </constraints>
@@ -30,23 +30,27 @@
                             <subviews>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="appicon" translatesAutoresizingMaskIntoConstraints="NO" id="ar0-qd-K5J">
                                     <rect key="frame" x="0.0" y="0.0" width="48" height="48"/>
+                                    <color key="backgroundColor" red="0.82354050869999995" green="0.82350939509999999" blue="0.82353055480000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="48" id="7Gz-yR-bQw"/>
                                     </constraints>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Episode Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cIR-7A-FWl">
                                     <rect key="frame" x="58" y="0.0" width="224" height="48"/>
+                                    <color key="backgroundColor" red="0.82746219639999996" green="0.82743090389999996" blue="0.82745212319999994" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8LE-XC-BQj">
                                     <rect key="frame" x="292" y="0.0" width="48" height="48"/>
+                                    <color key="backgroundColor" red="0.82354050869999995" green="0.82350939509999999" blue="0.82353055480000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="48" id="CWP-72-44s"/>
                                     </constraints>
                                     <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <state key="normal">
+                                        <color key="titleShadowColor" red="0.82746219639999996" green="0.82743090389999996" blue="0.82745212319999994" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <imageReference key="image" image="pause.circle" catalog="system" symbolScale="large"/>
                                     </state>
                                 </button>
@@ -62,10 +66,10 @@
                                     </connections>
                                 </button>
                             </subviews>
-                            <color key="backgroundColor" red="0.84314864869999995" green="0.84311681989999998" blue="0.84313839670000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <color key="backgroundColor" red="0.82354050869999995" green="0.82350939509999999" blue="0.82353055480000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         </stackView>
                     </subviews>
-                    <color key="backgroundColor" red="0.93726748230000001" green="0.93723225590000003" blue="0.93725609779999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <color key="backgroundColor" red="0.91765940189999995" green="0.91762489079999998" blue="0.91764825579999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     <color key="tintColor" red="0.72337728739999996" green="0.1509007514" blue="0.086205668750000006" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     <constraints>
                         <constraint firstItem="Rw8-jY-aOq" firstAttribute="top" secondItem="MPE-36-kg4" secondAttribute="top" id="4PS-ZN-gZi"/>
