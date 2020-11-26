@@ -35,6 +35,8 @@
 		B8B69F4D2544FB24001CBEF6 /* PlayerDetailsView+Gestures.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B69F4C2544FB24001CBEF6 /* PlayerDetailsView+Gestures.swift */; };
 		B8B69F57254508AF001CBEF6 /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B69F56254508AF001CBEF6 /* UIApplication.swift */; };
 		B8E837DA256F0B5C00BD8BA7 /* FavoritePodcastCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E837D9256F0B5C00BD8BA7 /* FavoritePodcastCell.swift */; };
+		B8E837EE256F4EB500BD8BA7 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E837ED256F4EB500BD8BA7 /* UserDefaults.swift */; };
+		B8E837FD2570090D00BD8BA7 /* DownloadsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E837FC2570090D00BD8BA7 /* DownloadsController.swift */; };
 		E8CF275EC43D11D6B7FA054B /* Pods_Podtube.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51EF5E5A713A91691F60A712 /* Pods_Podtube.framework */; };
 		F0B757D638CF9C8E6C81D16B /* Pods_PodtubeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D0DCA08FAC9077E24D46CB0 /* Pods_PodtubeTests.framework */; };
 /* End PBXBuildFile section */
@@ -96,6 +98,8 @@
 		B8B69F4C2544FB24001CBEF6 /* PlayerDetailsView+Gestures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlayerDetailsView+Gestures.swift"; sourceTree = "<group>"; };
 		B8B69F56254508AF001CBEF6 /* UIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
 		B8E837D9256F0B5C00BD8BA7 /* FavoritePodcastCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritePodcastCell.swift; sourceTree = "<group>"; };
+		B8E837ED256F4EB500BD8BA7 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
+		B8E837FC2570090D00BD8BA7 /* DownloadsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadsController.swift; sourceTree = "<group>"; };
 		BDDC77386051A4B5A8BCF4DE /* Pods-PodtubeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PodtubeTests.release.xcconfig"; path = "Target Support Files/Pods-PodtubeTests/Pods-PodtubeTests.release.xcconfig"; sourceTree = "<group>"; };
 		CFD68BF9D0604BA5EC6DABF9 /* Pods_Podtube_PodtubeUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Podtube_PodtubeUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB11014529AD5351926EC54E /* Pods-PodtubeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PodtubeTests.debug.xcconfig"; path = "Target Support Files/Pods-PodtubeTests/Pods-PodtubeTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -167,6 +171,8 @@
 				B838EEB42522049000159961 /* PodcastsSearchController.swift */,
 				B87A640E252FF87A001917DD /* EpisodesController.swift */,
 				B85F17C22560346F00A8A534 /* FavoritesController.swift */,
+				B83EE56D25217CCE008ECA48 /* MainTabBarController.swift */,
+				B8E837FC2570090D00BD8BA7 /* DownloadsController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -186,6 +192,7 @@
 				B8527C472534A729008E9B5F /* RSSFeed.swift */,
 				B8971AFC253B68EB0039C516 /* CMTime.swift */,
 				B8B69F56254508AF001CBEF6 /* UIApplication.swift */,
+				B8E837ED256F4EB500BD8BA7 /* UserDefaults.swift */,
 			);
 			path = Extentions;
 			sourceTree = "<group>";
@@ -227,7 +234,6 @@
 				B8540E21251F921100D1CDFE /* Assets.xcassets */,
 				B8540E23251F921100D1CDFE /* LaunchScreen.storyboard */,
 				B8540E26251F921100D1CDFE /* Info.plist */,
-				B83EE56D25217CCE008ECA48 /* MainTabBarController.swift */,
 			);
 			path = Podtube;
 			sourceTree = "<group>";
@@ -522,7 +528,9 @@
 				B8B69F57254508AF001CBEF6 /* UIApplication.swift in Sources */,
 				B850F1B0252CBB0600BED099 /* APIservice.swift in Sources */,
 				B8B69F4D2544FB24001CBEF6 /* PlayerDetailsView+Gestures.swift in Sources */,
+				B8E837EE256F4EB500BD8BA7 /* UserDefaults.swift in Sources */,
 				B838EEAF2522043500159961 /* Podcast.swift in Sources */,
+				B8E837FD2570090D00BD8BA7 /* DownloadsController.swift in Sources */,
 				B8971AFD253B68EB0039C516 /* CMTime.swift in Sources */,
 				B87A640F252FF87A001917DD /* EpisodesController.swift in Sources */,
 			);
