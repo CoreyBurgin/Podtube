@@ -2,7 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -46,10 +46,21 @@
                             </label>
                         </subviews>
                     </stackView>
+                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="100%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="unh-Yg-tfL">
+                        <rect key="frame" x="41" y="75" width="51" height="24"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                        <color key="shadowColor" red="0.91765940189999995" green="0.91762489079999998" blue="0.91764825579999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="7lA-Y8-A3a" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="4tY-DK-rL6"/>
+                    <constraint firstItem="unh-Yg-tfL" firstAttribute="centerY" secondItem="7lA-Y8-A3a" secondAttribute="centerY" id="7aJ-RD-DqJ"/>
+                    <constraint firstItem="unh-Yg-tfL" firstAttribute="centerX" secondItem="7lA-Y8-A3a" secondAttribute="centerX" id="AsC-KP-KyA"/>
+                    <constraint firstItem="unh-Yg-tfL" firstAttribute="centerX" secondItem="7lA-Y8-A3a" secondAttribute="centerX" id="Kzj-HV-qfO"/>
                     <constraint firstItem="8ZP-Dc-tQY" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="MK8-vl-39O"/>
+                    <constraint firstItem="unh-Yg-tfL" firstAttribute="centerY" secondItem="7lA-Y8-A3a" secondAttribute="centerY" id="WpA-RL-CbX"/>
                     <constraint firstItem="7lA-Y8-A3a" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="Z42-xm-hNs"/>
                     <constraint firstAttribute="trailing" secondItem="8ZP-Dc-tQY" secondAttribute="trailing" id="fgI-Yi-FLk"/>
                     <constraint firstItem="8ZP-Dc-tQY" firstAttribute="leading" secondItem="7lA-Y8-A3a" secondAttribute="trailing" constant="16" id="rPP-6u-xLL"/>
@@ -59,6 +70,7 @@
             <connections>
                 <outlet property="descriptionLabel" destination="TJI-UE-giN" id="RXS-U4-MDp"/>
                 <outlet property="episodeImageView" destination="7lA-Y8-A3a" id="xCm-zI-ZLR"/>
+                <outlet property="progressLabel" destination="unh-Yg-tfL" id="QZn-fU-a7N"/>
                 <outlet property="pubDateLabel" destination="lGH-Da-CdJ" id="Ij3-PQ-SD8"/>
                 <outlet property="titleLabel" destination="eDb-67-qDV" id="Bz4-E7-q6u"/>
             </connections>

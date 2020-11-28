@@ -109,20 +109,20 @@ class EpisodesController: UITableViewController {
             print("Downloading episode into UserDefaults")
             let episode = self.episodes[indexPath.row]
             UserDefaults.standard.downloadEpisode(episode: episode)
+            
+            // download the podcast episode using Alamofire
+            APIService.shared.downloadEpisode(episode: episode)
         }
-        
         downloadAction.backgroundColor = #colorLiteral(red: 0.9876493812, green: 0, blue: 0, alpha: 1)
-        
-        
         return [downloadAction]
     }
-
     override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let activityIndicatorView = UIActivityIndicatorView(style: .whiteLarge)
         activityIndicatorView.color = .darkGray
         activityIndicatorView.startAnimating()
         return activityIndicatorView
     }
+
     
     
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {

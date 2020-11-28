@@ -26,7 +26,7 @@ class PodcastCell: UITableViewCell {
         didSet {
             trackNameLabel.text = podcast.trackName
             artistNameLabel.text = podcast.artistName
-            genreLabel.text = podcast.primaryGenreName
+//            genreLabel.text = podcast.primaryGenreName
             episodeCountLabel.text = "\(podcast.trackCount ?? 0) Episodes"
             
             guard let url = URL(string: podcast.artworkUrl600 ?? "") else { return }

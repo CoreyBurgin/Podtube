@@ -15,8 +15,6 @@ class PlayersDetailsView: UIView {
     
     var episode: Episode! {
         didSet {
-            
-
             miniTitleLabel.text = episode.title
             episodeTitleLabel.text = episode.title
             authorLabel.text = episode.author
@@ -51,14 +49,33 @@ class PlayersDetailsView: UIView {
     
     
     fileprivate func playEpisode() {
-        print("Trying to play episode", episode.streamUrl)
+        if episode.fileUrl != nil {
+            playEpisodeUsingFileUrl()
+        } else {
+            print("Trying to play episode at url:", episode.streamUrl)
+            
+            guard let url = URL(string: episode.streamUrl) else { return }
+            let playerItem = AVPlayerItem(url: url)
+            player.replaceCurrentItem(with: playerItem)
+            player.play()
+        }
+    }
+    
+    fileprivate func playEpisodeUsingFileUrl() {
+        print("Attempt to play episode with file url:", episode.fileUrl ?? "")
         
-        guard let url = URL(string: episode.streamUrl) else { return }
-        let playerItem = AVPlayerItem(url: url)
+        // let's figure out the file name for our episode file url
+        guard let fileURL = URL(string: episode.fileUrl ?? "") else { return }
+        let fileName = fileURL.lastPathComponent
+        
+        guard var trueLocation = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
+        
+        trueLocation.appendPathComponent(fileName)
+        print("True Location of episode:", trueLocation.absoluteString)
+        let playerItem = AVPlayerItem(url: trueLocation)
         player.replaceCurrentItem(with: playerItem)
         player.play()
     }
-    
     
     let player: AVPlayer = {
         let avPlayer = AVPlayer()

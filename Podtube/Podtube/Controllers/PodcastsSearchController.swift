@@ -59,7 +59,7 @@ class PodcastsSearchController: UITableViewController, UISearchBarDelegate {
         tableView.tableFooterView = UIView()
         let nib = UINib(nibName: "PodcastCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: cellId)
-        hidesBottomBarWhenPushed = true
+//        hidesBottomBarWhenPushed = true
     }
     
     
